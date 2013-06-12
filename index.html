@@ -2,7 +2,7 @@
 <html>
 	<head>
 	<meta charset="utf-8">
-	<title>GLuca</title>
+	<title>PLuca</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
 		<meta name="apple-mobile-web-app-capable" content="yes"/>
@@ -12,6 +12,14 @@
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
 	function onDeviceReady() {
+	   var language = window.navigator.userLanguage || window.navigator.language;
+	   $('#imgsplash').css('position','absolute');
+	   	   if(window.document.width>$('#imgsplash').width()){
+	   	   		$('#imgsplash').css('left',((window.document.width-$('#imgsplash').width())/2)+'px');
+	   	   }
+	   	   if(window.document.height>$('#imgsplash').height()){
+	   	   		$('#imgsplash').css('top',((window.document.height-$('#imgsplash').height())/2)+'px');
+	   	   }
 if (jQuery==0) {
 	if(language.indexOf("fr") !== -1){
 		alert('Aucune connexion disponible.\nFermez et relancez l\'application quand votre connexion sera à nouveau disponible.');
@@ -25,8 +33,6 @@ if (jQuery==0) {
 </script>
 </head>
 <body style="background-color: #000000" onload="onDeviceReady()" style="top:0px; margin:0px; padding:0px;">	
-	<div style="position: absolute; width:200px; height:50px; top:50%; left:50%; margin-top:-25px (height/2); margin-left:100px (width/2)">
-		<img src="splash.png" border="0" />
-	</div>
+		<img id="imgsplash" src="splash.png" border="0" />
 </body>
 </html>

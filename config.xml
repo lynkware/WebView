@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 	<widget xmlns	= "http://www.w3.org/ns/widgets"
 		xmlns:gap	= "http://phonegap.com/ns/1.0"
-		id			= "com.lynkware.gluca"
+		id			= "com.lynkware.pluca"
 		version		= "1.0.0">
-	<name>GLuca</name>
-	<description>GLuca</description>
+	<name>PLuca</name>
+	<description>PLuca</description>
 	<author href="http://http://www.lynkare.com">lynkware</author>
 	<gap:platforms>
 		<gap:platform name="android" minVersion="2.1" />
