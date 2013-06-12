@@ -3,8 +3,8 @@
 		xmlns:gap	= "http://phonegap.com/ns/1.0"
 		id			= "com.lynkware"
 		version		= "1.0.0">
-	<name></name>
-	<description></description>
+	<name>Test2Luca</name>
+	<description>Test2Luca</description>
 	<author href="http://http://www.lynkare.com">lynkware</author>
 	<gap:platforms>
 		<gap:platform name="android" minVersion="2.1" />
