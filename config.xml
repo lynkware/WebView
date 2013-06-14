@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 	<widget xmlns	= "http://www.w3.org/ns/widgets"
 		xmlns:gap	= "http://phonegap.com/ns/1.0"
-		id			= "com.lynkware.pluca"
+		id			= "mobylee.appbuilder.test"
 		version		= "1.0.0">
-	<name>PLuca</name>
-	<description>PLuca</description>
+	<name>test</name>
+	<description>test</description>
 	<author href="http://http://www.lynkare.com">lynkware</author>
 	<gap:platforms>
 		<gap:platform name="android" minVersion="2.1" />
