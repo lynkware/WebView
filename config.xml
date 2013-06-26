@@ -15,7 +15,7 @@
 	<icon src="icon.png" />
 	<icon src="icon57.png" gap:platform="ios" width="57" height="57" />
 	<icon src="icon72.png" gap:platform="ios" width="72" height="72" />
-	<gap:splash src="splash.png" gap:platform="ios" width="320" height="480" />
+	<gap:splash src="splash.png" />
 	<feature name="http://api.phonegap.com/1.0/geolocation"/>
 	<feature name="http://api.phonegap.com/1.0/network"/>
 </widget>
