@@ -23,6 +23,7 @@ function onBackButton() {
 	window.history.back();
 }
 	function onDeviceReady() {
+	   initializeViewModel();
 	   var language = window.navigator.userLanguage || window.navigator.language;
 if (connection==0) {
 	if(language.indexOf("fr") !== -1){
@@ -39,7 +40,7 @@ if (connection==0) {
 document.addEventListener("backbutton", onBackButton, false);
 </script>
 </head>
-<body style="background-color: #FFFFFF" onload="onDeviceReady()" style="top:0px; margin:0px; padding:0px;">	
+<body style="background-color: #FFFFFF" onload="ondeviceready()" style="top:0px; margin:0px; padding:0px;">	
 <div id="dialog" title="Vitrail Aube">
   <p id="dialogMsg"></p>
 </div>
