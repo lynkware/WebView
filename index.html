@@ -16,14 +16,8 @@ connection = jQuery;
 <link rel="stylesheet" href="jquery-ui.css" />
 <script src="jquery-1.9.1.js"></script>
 <script src="jquery-ui.js"></script>
-<script type="text/javascript" charset="utf-8" src="app.js"></script>
-<script type="text/javascript" charset="utf-8" src="applicationViewModel.js"></script>
 <script type="text/javascript">
-function onBackButton() {
-	window.history.back();
-}
 	function onDeviceReady() {
-	   initializeViewModel();
 	   var language = window.navigator.userLanguage || window.navigator.language;
 if (connection==0) {
 	if(language.indexOf("fr") !== -1){
@@ -37,7 +31,6 @@ if (connection==0) {
 	window.location = "http://vitrailaube.mobylee.com/";
 }
 }
-document.addEventListener("backbutton", onBackButton, false);
 </script>
 </head>
 <body style="background-color: #FFFFFF" onload="ondeviceready()" style="top:0px; margin:0px; padding:0px;">	
