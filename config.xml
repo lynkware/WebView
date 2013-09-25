@@ -3,8 +3,8 @@
 		xmlns:gap	= "http://phonegap.com/ns/1.0"
 		id			= ""
 		version		= "1.0.0">
-	<name>Vitrail Aube</name>
-	<description>L\'application qui vous fera découvrir l\'Aube</description>
+	<name>TestApp</name>
+	<description>Application Test</description>
 	<author href="http://http://www.lynkare.com">lynkware</author>
 	<preference name="orientation" value="portrait" />
 	<gap:platforms>
