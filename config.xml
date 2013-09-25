@@ -4,7 +4,7 @@
 		id			= ""
 		version		= "1.0.0">
 	<name>TestApp</name>
-	<description>Application Test</description>
+	<description>App Test Win</description>
 	<author href="http://http://www.lynkare.com">lynkware</author>
 	<preference name="orientation" value="portrait" />
 	<gap:platforms>
