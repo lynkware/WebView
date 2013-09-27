@@ -3,7 +3,7 @@
 		xmlns:gap	= "http://phonegap.com/ns/1.0"
 		id			= ""
 		version		= "1.0.0">
-	<name>Luca</name>
+	<name>Lucq</name>
 	<description>Russo</description>
 	<author href="http://http://www.lynkare.com">lynkware</author>
 	<preference name="orientation" value="portrait" />
