@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 	<widget xmlns	= "http://www.w3.org/ns/widgets"
 		xmlns:gap	= "http://phonegap.com/ns/1.0"
-		id			= "com.lynkee.pic"
+		id			= ""
 		version		= "1.0.0">
-	<name>ciao</name>
-	<description>ciao</description>
+	<name>But app</name>
+	<description>Vous êtes bien chez vous</description>
 	<author href="http://http://www.lynkare.com">lynkware</author>
 	<preference name="orientation" value="portrait" />
 	<gap:platforms>
