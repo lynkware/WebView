@@ -4,7 +4,7 @@
 		id			= "com.lynkee.pic"
 		version		= "1.0.0">
 	<name>AppTest</name>
-	<description>Test applciatio</description>
+	<description>App</description>
 	<author href="http://http://www.lynkare.com">lynkware</author>
 	<preference name="orientation" value="portrait" />
 	<gap:platforms>
