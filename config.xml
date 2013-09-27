@@ -3,8 +3,8 @@
 		xmlns:gap	= "http://phonegap.com/ns/1.0"
 		id			= "com.lynkee.pic"
 		version		= "1.0.0">
-	<name>AppTest</name>
-	<description>App</description>
+	<name>luca</name>
+	<description>ciao</description>
 	<author href="http://http://www.lynkare.com">lynkware</author>
 	<preference name="orientation" value="portrait" />
 	<gap:platforms>
