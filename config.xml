@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 	<widget xmlns	= "http://www.w3.org/ns/widgets"
 		xmlns:gap	= "http://phonegap.com/ns/1.0"
-		id			= "com.lynkware"
+		id			= ""
 		version		= "1.0.0">
-	<name>But</name>
-	<description>but application description</description>
+	<name>App Splash but</name>
+	<description>Test splash pour but</description>
 	<author href="http://http://www.lynkare.com">lynkware</author>
 	<preference name="orientation" value="portrait" />
 	<gap:platforms>
