@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 	<widget xmlns	= "http://www.w3.org/ns/widgets"
 		xmlns:gap	= "http://phonegap.com/ns/1.0"
-		id			= ""
+		id			= "com.vitrailaube"
 		version		= "1.0.0">
-	<name>peppapig</name>
-	<description>peppapig decr</description>
+	<name>Vitrailaube</name>
+	<description>vitrailaube</description>
 	<author href="http://http://www.lynkare.com">lynkware</author>
 	<preference name="orientation" value="portrait" />
 	<gap:platforms>
