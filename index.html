@@ -28,11 +28,7 @@ if (connection==0) {
 		$("#dialog").dialog();
 	}
 } else {
-navigator.notification.activityStart("Loading some url....", "loading");
-    setTimeout(function loadMyUrl(){
-            navigator.app.loadUrl("http://vitrailaube.mobylee.com");
-            navigator.notification.activityStop();
-    }, 3000 );
+	window.open("http://vitrailaube.mobylee.com", "_blank", "location=yes");
 }
 }
 }

@@ -16,6 +16,7 @@
 	<icon src="icon.png" />
 	<icon src="icon57.png" gap:platform="ios" width="57" height="57" />
 	<icon src="icon72.png" gap:platform="ios" width="72" height="72" />
+	<gap:plugin name="org.apache.cordova.inappbrowser" />
 	<gap:splash src="splash.png" />
 	<gap:splash src="splash_iphone5.png" gap:platform="ios" width="640" height="1136" />
 	<feature name="http://api.phonegap.com/1.0/geolocation"/>
