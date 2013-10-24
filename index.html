@@ -2,7 +2,7 @@
 <html>
 	<head>
 	<meta charset="utf-8">
-	<title>Vitrailaube</title>
+	<title>vitrailaube</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
 		<meta name="apple-mobile-web-app-capable" content="yes"/>
@@ -28,13 +28,15 @@ if (connection==0) {
 		$("#dialog").dialog();
 	}
 } else {
-	window.open("http://vitrailaube.mobylee.com", "_blank", "location=yes");
+	var ref = window.open("http://vitrailaube.mobylee.com", "_blank", "location=yes");
+	ref.addEventListener("loadstart", function (event) { $("#dialogMsg").text("wait...");$("#dialog").dialog(); });
+	ref.addEventListener("loadstop", function (event) { $("#dialog").hide(); });
 }
 }
 </script>
 </head>
 <body style="background-color: #FFFFFF" onload="onDeviceReady()" style="top:0px; margin:0px; padding:0px;">	
-<div id="dialog" title="Vitrailaube">
+<div id="dialog" title="vitrailaube">
   <p id="dialogMsg"></p>
 </div>
 </body>
