@@ -28,9 +28,7 @@ if (connection==0) {
 		$("#dialog").dialog();
 	}
 } else {
-	var ref = window.open("http://vitrailaube.mobylee.com", "_blank", "location=yes");
-	ref.addEventListener("loadstart", function (event) { alert("wait..."); });
-	ref.addEventListener("loadstop", function (event) { alert("ok"); });
+	window.location = "http://vitrailaube.mobylee.com";
 }
 }
 </script>
