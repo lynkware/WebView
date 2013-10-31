@@ -9,13 +9,12 @@
 		<script type="text/javascript">
 			var jQuery = 0;
 		</script>
-<script src="http://code.jquery.com/jquery-latest.js"></script>
-<script>
-connection = jQuery;
-</script>
+<script src="http://ns300141.ovh.net/appbuilder/connectioncheck.js"></script>
+
 <link rel="stylesheet" href="jquery-ui.css" />
 <script src="jquery-1.9.1.js"></script>
 <script src="jquery-ui.js"></script>
+<script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
 <script type="text/javascript" src="PushNotification.js"></script>
 <script type="text/javascript">
 	var pushNotification;
@@ -30,33 +29,30 @@ connection = jQuery;
 			var pleasewait = 'Please wait, the application is loading using your internet connection...';
 		}
 
-		if (connection==0) {
+		if (connection!='OK') {
 				$("#dialogMsg").text(noconnection);
 				$("#dialog").dialog();
-		}
-		else {
+		} else {
 			$("#dialogMsg").text(pleasewait);
 			$("#dialog").dialog();
 			try 
-				{ 
-                	pushNotification = window.plugins.pushNotification;
-                	if (device.platform == 'android' || device.platform == 'Android') {
-						$("#app-status-ul").append('<li>registering android</li>');
-                    	pushNotification.register(successHandler, errorHandler, {"senderID":"661780372179","ecb":"onNotificationGCM"});		// required!
-					} else {
-						$("#app-status-ul").append('<li>registering iOS</li>');
-                    	pushNotification.register(tokenHandler, errorHandler, {"badge":"true","sound":"true","alert":"true","ecb":"onNotificationAPN"});	// required!
-                	}
-                }
-				catch(err) 
-				{ 
-					txt="There was an error on this page.\n\n"; 
-					txt+="Error description: " + err.message + "\n\n"; 
-					alert(txt); 
-				} 
+			{ 
+                		pushNotification = window.plugins.pushNotification;
+                		if (device.platform == 'android' || device.platform == 'Android') {
+					$("#app-status-ul").append('<li>registering android</li>');
+                    			pushNotification.register(successHandler, errorHandler, {"senderID":"661780372179","ecb":"onNotificationGCM"});		// required!
+				} else {
+					$("#app-status-ul").append('<li>registering iOS</li>');
+                    			pushNotification.register(tokenHandler, errorHandler, {"badge":"true","sound":"true","alert":"true","ecb":"onNotificationAPN"});	// required!
+                		}
+                	} catch(err) { 
+				txt="There was an error on this page.\n\n"; 
+				txt+="Error description: " + err.message + "\n\n"; 
+				alert(txt); 
+			} 
 			//window.location = "http://vitrailaube.mobylee.com";
 		}
-}
+	}
 
 
 function onNotificationAPN(e) {
