@@ -1,59 +1,59 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
-	<head>
-	<meta charset="utf-8">
-	<title>Vitrailaube</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
-		<meta name="apple-mobile-web-app-capable" content="yes"/>
-		
-<script src="http://ns300141.ovh.net/appbuilder/connectioncheck.js"></script>
-<script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
-<link rel="stylesheet" href="jquery-ui.css" />
-<script src="jquery-1.9.1.js"></script>
-<script src="jquery-ui.js"></script>
-<script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
-<script type="text/javascript" src="PushNotification.js"></script>
-<script type="text/javascript">
-	var pushNotification;
-	function onDeviceReady() {
-	   var language = window.navigator.userLanguage || window.navigator.language;
-		if(language.indexOf("fr") !== -1){
-			var noconnection = 'Aucune connexion disponible. Fermez et relancez l\'application quand votre connexion sera à nouveau disponible.';
-			var pleasewait = 'Veuillez patientez, la application se charge en utilisant votre connexion internet...';
-		}
-		else {
-			var noconnection = 'No connection available. Please close and restart the app when you have an active connection';
-			var pleasewait = 'Please wait, the application is loading using your internet connection...';
-		}
-
-		if (connection!='OK') {
-				$("#dialogMsg").text(noconnection);
-				$("#dialog").dialog();
-		} else {
-			$("#dialogMsg").text(pleasewait);
-			$("#dialog").dialog();
-			try 
-			{ 
-                		pushNotification = window.plugins.pushNotification;
-                		if (device.platform == 'android' || device.platform == 'Android') {
-					$("#app-status-ul").append('<li>registering android</li>');
-                    			pushNotification.register(successHandler, errorHandler, {"senderID":"661780372179","ecb":"onNotificationGCM"});		// required!
-				} else {
-					$("#app-status-ul").append('<li>registering iOS</li>');
-                    			pushNotification.register(tokenHandler, errorHandler, {"badge":"true","sound":"true","alert":"true","ecb":"onNotificationAPN"});	// required!
-                		}
-                	} catch(err) { 
-				txt="There was an error on this page.\n\n"; 
-				txt+="Error description: " + err.message + "\n\n"; 
-				alert(txt); 
-			} 
-			//window.location = "http://vitrailaube.mobylee.com";
-		}
-	}
-
-
-function onNotificationAPN(e) {
+    <head>
+        <title>com.PhoneGap.c2dm</title>
+    </head>
+    <body>
+        
+        <!--<script type="text/javascript" charset="utf-8" src="cordova-2.2.0.js"></script>-->
+        <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
+        <script type="text/javascript" charset="utf-8" src="jquery_1.5.2.min.js"></script>
+        <script type="text/javascript" src="PushNotification.js"></script>
+        
+        <script type="text/javascript">
+            var pushNotification;
+            
+            function onDeviceReady() {
+                $("#app-status-ul").append('<li>deviceready event received</li>');
+                
+				document.addEventListener("backbutton", function(e)
+				{
+                	$("#app-status-ul").append('<li>backbutton event received</li>');
+  					
+      				if( $("#home").length > 0)
+					{
+						// call this to get a new token each time. don't call it to reuse existing token.
+						//pushNotification.unregister(successHandler, errorHandler);
+						e.preventDefault();
+						navigator.app.exitApp();
+					}
+					else
+					{
+						navigator.app.backHistory();
+					}
+				}, false);
+			
+				try 
+				{ 
+                	pushNotification = window.plugins.pushNotification;
+                	if (device.platform == 'android' || device.platform == 'Android') {
+						$("#app-status-ul").append('<li>registering android</li>');
+                    	pushNotification.register(successHandler, errorHandler, {"senderID":"661780372179","ecb":"onNotificationGCM"});		// required!
+					} else {
+						$("#app-status-ul").append('<li>registering iOS</li>');
+                    	pushNotification.register(tokenHandler, errorHandler, {"badge":"true","sound":"true","alert":"true","ecb":"onNotificationAPN"});	// required!
+                	}
+                }
+				catch(err) 
+				{ 
+					txt="There was an error on this page.\n\n"; 
+					txt+="Error description: " + err.message + "\n\n"; 
+					alert(txt); 
+				} 
+            }
+            
+            // handle APNS notifications for iOS
+            function onNotificationAPN(e) {
                 if (e.alert) {
                      $("#app-status-ul").append('<li>push-notification: ' + e.alert + '</li>');
                      navigator.notification.alert(e.alert);
@@ -131,18 +131,16 @@ function onNotificationAPN(e) {
             function errorHandler (error) {
                 $("#app-status-ul").append('<li>error:'+ error +'</li>');
             }
-</script>
-</head>
-<body style="background-color: #FFFFFF" onload="onDeviceReady()" style="top:0px; margin:0px; padding:0px;">	
-<div id="home">
+            
+			document.addEventListener('deviceready', onDeviceReady, true);
+
+         </script>
+		<div id="home">
 			<div id="app-status-div">
 				<ul id="app-status-ul">
 					<li>Cordova PushNotification Plugin Demo</li>
 				</ul>
 			</div>
 		</div>
-<div id="dialog" title="Vitrailaube">
-  <p id="dialogMsg"></p>
-</div>
-</body>
+    </body>
 </html>
