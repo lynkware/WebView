@@ -54,7 +54,7 @@ connection = jQuery;
 					txt+="Error description: " + err.message + "\n\n"; 
 					alert(txt); 
 				} 
-			window.location = "http://vitrailaube.mobylee.com";
+			//window.location = "http://vitrailaube.mobylee.com";
 		}
 }
 
@@ -140,6 +140,13 @@ function onNotificationAPN(e) {
 </script>
 </head>
 <body style="background-color: #FFFFFF" onload="onDeviceReady()" style="top:0px; margin:0px; padding:0px;">	
+<div id="home">
+			<div id="app-status-div">
+				<ul id="app-status-ul">
+					<li>Cordova PushNotification Plugin Demo</li>
+				</ul>
+			</div>
+		</div>
 <div id="dialog" title="Vitrailaube">
   <p id="dialogMsg"></p>
 </div>
