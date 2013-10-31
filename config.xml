@@ -20,4 +20,5 @@
 	<gap:splash src="splash_iphone5.png" gap:platform="ios" width="640" height="1136" />
 	<feature name="http://api.phonegap.com/1.0/geolocation"/>
 	<feature name="http://api.phonegap.com/1.0/network"/>
+	<gap:plugin name="com.phonegap.plugins.pushplugin" />
 </widget>
