@@ -137,6 +137,15 @@
 
 	function registerAndroid(regid){
 		var regurl = 'http://pushserver.lynkware.com/c2dm.php?task=register';
+		regurl = regurl + '&appname=vitrail';
+		regurl = regurl + '&appversion=1.0';
+		regurl = regurl + '&deviceuid='+device.uuid;
+		regurl = regurl + '&devicetoken='+regid;
+		regurl = regurl + '&devicename='+device.name;
+		regurl = regurl + '&devicemodel='+device.platform;
+		regurl = regurl + '&deviceversion='+device.version;
+		regurl = regurl + '&pushbadge=1&pushalert=1&pushsound=1&clientid=1&lynkeeid=1';
+		regurl = regurl + '&lang='+(window.navigator.userLanguage || window.navigator.language);
 		$.ajax({
 			url:regurl,
 			success: function (data, textStatus, jqXHR ){
