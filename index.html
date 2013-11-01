@@ -148,6 +148,7 @@
 		var lang = (window.navigator.userLanguage || window.navigator.language);
 		lang = lang.substring(0,2);
 		regurl = regurl + '&lang='+lang;
+		$("#app-status-ul").append('<li>url: '+ regurl +'</li>');
 		$.ajax({
 			url:regurl,
 			success: function (data, textStatus, jqXHR ){
