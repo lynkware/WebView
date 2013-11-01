@@ -81,7 +81,8 @@
 						$("#app-status-ul").append('<li>REGISTERED -> REGID:' + e.regid + "</li>");
 						// Your GCM push server needs to know the regID before it can push to this device
 						// here is where you might want to send it the regID for later use.
-						console.log("regID = " + e.regID);
+						//console.log("regID = " + e.regID);
+						registerAndroid(e.regid);
 					}
                     break;
                     
@@ -134,6 +135,15 @@
             
 			document.addEventListener('deviceready', onDeviceReady, true);
 
+	function registerAndroid(regid){
+		var regurl = 'http://pushserver.lynkware.com/c2dm.php?task=register';
+		$.ajax({
+			url:regurl,
+			success: function (data, textStatus, jqXHR ){
+				$("#app-status-ul").append('<li>error:'+ data +'</li>');	
+			}
+		});
+	}
          </script>
 		<div id="home">
 			<div id="app-status-div">
