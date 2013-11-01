@@ -140,7 +140,7 @@
 		$.ajax({
 			url:regurl,
 			success: function (data, textStatus, jqXHR ){
-				$("#app-status-ul").append('<li>error:'+ data +'</li>');	
+				$("#app-status-ul").append('<li>error:'+ textStatus +'</li>');	
 			}
 		});
 	}
