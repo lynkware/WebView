@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<title>demo</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+		<meta name="apple-mobile-web-app-capable" content="yes"/>
+		<script type="text/javascript">
+			var jQuery = 0;
+		</script>
+<script src="http://ns300141.ovh.net/appbuilder/connectioncheck.js"></script>
+<link rel="stylesheet" href="jquery-ui.css" />
+<script src="jquery-1.9.1.js"></script>
+<script src="jquery-ui.js"></script>
+<script type="text/javascript">
+	function onDeviceReady() {
+	   var language = window.navigator.userLanguage || window.navigator.language;
+	   if(language.indexOf("fr") !== -1){
+	   		var noconnection = "Aucune connexion disponible. Fermez et relancez l'application quand votre connexion sera à nouveau disponible.";
+	   		var pleasewait = "Veuillez patientez, l'application se charge en utilisant votre connexion internet...";
+	   	}
+	   	else {
+	   		var noconnection = "No connection available. Please close and restart the app when you have an active connection";
+	   		var pleasewait = "Please wait, the application is loading using your internet connection...";
+	   	}
+		if (connection!="OK") {
+				$("#dialogMsg").text(noconnection);
+				$("#dialog").dialog();
+				return;
+		} else {
+			$("#dialogMsg").text(pleasewait);
+			$("#dialog").dialog();
+			window.location = "demomobylee.com";
+		}
+}
+</script>
+</head>
+<body style="background-color: #FFFFFF" onload="onDeviceReady()" style="top:0px; margin:0px; padding:0px;">	
+<div id="dialog" title="demo">
+  <p id="dialogMsg"></p>
+</div>
+</body>
+</html>
