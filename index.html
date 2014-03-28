@@ -1,44 +1,165 @@
 <!DOCTYPE html>
 <html>
 	<head>
-	<meta charset="utf-8">
-	<title>A name</title>
+		<meta charset="utf-8">
+		<title>VitrailAube</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
 		<meta name="apple-mobile-web-app-capable" content="yes"/>
 		<script type="text/javascript">
 			var jQuery = 0;
 		</script>
-<script src="http://ns300141.ovh.net/appbuilder/connectioncheck.js"></script>
-<link rel="stylesheet" href="jquery-ui.css" />
-<script src="jquery-1.9.1.js"></script>
-<script src="jquery-ui.js"></script>
-<script type="text/javascript">
-	function onDeviceReady() {
-	   var language = window.navigator.userLanguage || window.navigator.language;
-	   if(language.indexOf("fr") !== -1){
-	   		var noconnection = "Aucune connexion disponible. Fermez et relancez l'application quand votre connexion sera à nouveau disponible.";
-	   		var pleasewait = "Veuillez patientez, l'application se charge en utilisant votre connexion internet...";
-	   	}
-	   	else {
-	   		var noconnection = "No connection available. Please close and restart the app when you have an active connection";
-	   		var pleasewait = "Please wait, the application is loading using your internet connection...";
-	   	}
-		if (connection!="OK") {
-				$("#dialogMsg").text(noconnection);
-				$("#dialog").dialog();
-				return;
-		} else {
-			$("#dialogMsg").text(pleasewait);
-			$("#dialog").dialog();
-			window.location = "http://demo.mobylee.com";
-		}
-}
-</script>
-</head>
-<body style="background-color: #FFFFFF" onload="onDeviceReady()" style="top:0px; margin:0px; padding:0px;">	
-<div id="dialog" title="A name">
-  <p id="dialogMsg"></p>
-</div>
-</body>
+        <script type="text/javascript" src="phonegap.js"></script>
+		<script type="text/javascript" src="PushNotification.js"></script>
+		<link rel="stylesheet" href="jquery-ui.css" />
+		<script src="jquery-1.9.1.js"></script>
+		<script src="jquery-ui.js"></script>
+		<script type="text/javascript">
+			var pushNotification;			
+			// result contains any message sent from the plugin call
+			function successHandler (result) {
+			    console.log("result: "+result);
+			}
+			// result contains any error description text returned from the plugin call
+			function errorHandler (error) {
+			    console.log("error: "+error);
+			}
+			function tokenHandler (result) {
+			    // Your iOS push server needs to know the token before it can push to this device
+			    // here is where you might want to send it the token for later use.
+			    registerApple(result);
+			    console.log("device token: "+result);
+			}
+			// iOS
+			function onNotificationAPN (event) {
+// this is the actual push notification. its format depends on the data model from the push server
+			    if (event.alert) {
+			        navigator.notification.alert(event.alert);
+			    }
+			    if (event.sound) {
+			        var snd = new Media(event.sound);
+			        snd.play();
+			    }
+			    if (event.badge) {
+			        pushNotification.setApplicationIconBadgeNumber(successHandler, errorHandler, event.badge);
+			    }
+			}
+			// handle GCM notifications for Android
+			function onNotificationGCM(e) {
+				switch(e.event) {
+				    case "registered":
+						if (e.regid.length > 0 ) {
+							// Your GCM push server needs to know the regID before 
+							//it can push to this device
+							// here is where you might want to send it the regID for later use.
+							//console.log("regID = " + e.regID);
+							registerAndroid(e.regid);
+						}
+						break;
+	    case "message":
+						// this is the actual push notification. its format depends on the data model from the push server
+					navigator.notification.alert("push error: "+e.message);
+				    	// if this flag is set, this notification happened while we were in the foreground.
+				    	// you might want to play a sound to get the user's attention, throw up a dialog, etc.
+			//CHECK SOUND THIS PART	
+					if (e.foreground) {
+							var my_media = new Media("/android_asset/www/"+e.soundname);
+							my_media.play();
+						}
+						break;
+				    case "error":
+						navigator.notification.alert("push error: "+e.msg);
+				    	break;
+				}
+			}
+//THE REGISTER URL has to be set up to use the one will we put un synfony
+			function registerAndroid(regid){
+				var regurl = "http://ns300141.ovh.net/app-builder/trunk/web/app_dev.php/register/android/";
+				sendAjaxRegister(regurl, regid);
+			}
+			function registerApple(regid){
+				var regurl = "http://ns300141.ovh.net/app-builder/trunk/web/app_dev.php/register/ios/";
+				sendAjaxRegister(regurl, regid);
+			}
+			function sendAjaxRegister(regurl, regid) {
+				regurl = regurl + "testerrors/";
+				regurl = regurl + "1.0/";
+				var lang = (window.navigator.userLanguage || window.navigator.language);
+				lang = lang.substring(0,2);
+				regurl = regurl + lang+"/";
+				regurl = regurl + device.uuid+"/";
+				regurl = regurl + regid+"/";
+				regurl = regurl + device.name+"/";
+				regurl = regurl + device.platform+"/";
+				regurl = regurl + device.version+"/";
+				regurl = regurl + "enabled/enabled/enabled";
+				console.log(regurl);
+				$.ajax({
+					url: regurl,
+					success: function (data, textStatus, jqXHR ){
+						console.log(textStatus);
+					},
+					error: function(jqXHR, textStatus, errorThrown){
+						console.log(textStatus);
+						console.log(errorThrown);
+					},
+					complete:  function(jqXHR, textStatus ){
+						//navigator.notification.alert("before redirect");
+						console.log("Ajax complted");
+						window.location = "http://testerrors.mobylee.com"; 
+					}
+				});
+			}
+			function onDeviceReady() {
+				/** PUSH NOTIFICATION **/
+				console.log("Device Ready");
+				pushNotification = window.plugins.pushNotification;
+				if (device.platform == "android" || device.platform == "Android") {
+					console.log("Android");
+				    pushNotification.register(
+				        successHandler,
+				        errorHandler, {
+				            "senderID":"739686245859",
+				            "ecb":"onNotificationGCM"
+				        });
+				}
+				else {
+					console.log("Apple");
+				    pushNotification.register(
+				        tokenHandler,
+				        errorHandler, {
+				            "badge":"true",
+				            "sound":"true",
+				            "alert":"true",
+				            "ecb":"onNotificationAPN"
+				        });
+				}
+				/** END PUSH NOTIFICATION **/
+				var language = window.navigator.userLanguage || window.navigator.language;
+				var networkState = navigator.network.connection.type;
+				if(language.indexOf("fr") !== -1){
+				   	var noconnection = "Aucune connexion disponible. Fermez et relancez l'application quand votre connexion sera à nouveau disponible.";
+				   	var pleasewait = "Veuillez patientez, la application se charge en utilisant votre connexion internet...";
+				}
+				else {
+				   	var noconnection = "No connection available. Please close and restart the app when you have an active connection";
+				   	var pleasewait = "Please wait, the application is loading using your internet connection...";
+				}
+				if (networkState == Connection.NONE) {
+						$("#dialogMsg").text(noconnection);
+						$("#dialog").dialog();
+						return;
+				} else {
+					$("#dialogMsg").text(pleasewait);
+					$("#dialog").dialog();
+					//window.location = "http://www.lynkware.com";
+				}
+			}
+		</script>
+	</head>
+	<body style="background-color: #FFFFFF" onload="onDeviceReady()" style="top:0px; margin:0px; padding:0px;">	
+		<div id="dialog" title="testerrors">
+		  	<p id="dialogMsg"></p>
+		</div>
+	</body>
 </html>

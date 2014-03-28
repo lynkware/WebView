@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 	<widget xmlns	= "http://www.w3.org/ns/widgets"
 		xmlns:gap	= "http://phonegap.com/ns/1.0"
-		id			= "com.lynkware.demo"
+		id			= "com.mobylee.testerrors"
 		version		= "1.0.0">
-	<name>A name</name>
-	<description>A description</description>
+	<name>testerrors</name>
+	<description>testerrors</description>
 	<author href="http://www.lynkare.com">lynkware</author>
 	<preference name="orientation" value="portrait" />
 	<gap:platforms>
@@ -20,4 +20,5 @@
 	<gap:splash src="splash_iphone5.png" gap:platform="ios" width="640" height="1136" />
 	<feature name="http://api.phonegap.com/1.0/geolocation"/>
 	<feature name="http://api.phonegap.com/1.0/network"/>
+	<gap:plugin name="com.phonegap.plugins.pushplugin" />
 </widget>
