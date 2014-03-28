@@ -22,5 +22,6 @@
 	<feature name="http://api.phonegap.com/1.0/network"/>
 	<feature name="http://api.phonegap.com/1.0/device"/>
 	<gap:plugin name="org.apache.cordova.device"/>
+	<gap:plugin name="org.apache.cordova.network-information"/>
 	<gap:plugin name="com.phonegap.plugins.pushplugin" />
 </widget>
